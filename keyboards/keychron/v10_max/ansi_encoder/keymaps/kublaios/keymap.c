@@ -29,25 +29,31 @@ enum {
     M_PREV = SAFE_RANGE,
     M_NEXT,
     M_VIMCP,
+    M_DESKTOP,
+    M_DL,
+    M_DEV,
+    M_DROPBOX,
+    M_HOME,
+    M_SPTLGHT,
 };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_ansi_89(
         KC_MUTE,    KC_ESC,          KC_BRID,    KC_BRIU,  KC_F3,         KC_F4,         RGB_VAD,   RGB_VAI,  KC_MPRV,   KC_MPLY,       KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  MO(MAC_FN),         KC_DEL,
-        MC_1,       KC_GRV,          KC_1,       KC_2,     KC_3,          KC_4,          KC_5,      KC_6,     KC_7,      KC_8,          KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_PGUP,
-        MC_2,       KC_TAB,          KC_Q,       KC_W,     KC_E,          KC_R,          KC_T,      KC_Y,     KC_U,      KC_I,          KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_PGDN,
-        MC_3,       LCTL_T(KC_ESC),  KC_A,       KC_S,     KC_D,          KC_F,          KC_G,      KC_H,     KC_J,      KC_K,          KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_HOME,
-        MC_4,       KC_LSFT,                     KC_Z,     KC_X,          KC_C,          KC_V,      KC_B,     KC_BSPC,   KC_N,          KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
+        MC_0,       KC_GRV,          KC_1,       KC_2,     KC_3,          KC_4,          KC_5,      KC_6,     KC_7,      KC_8,          KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_PGUP,
+        MC_1,       KC_TAB,          KC_Q,       KC_W,     KC_E,          KC_R,          KC_T,      KC_Y,     KC_U,      KC_I,          KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_PGDN,
+        MC_2,       LCTL_T(KC_ESC),  KC_A,       KC_S,     KC_D,          KC_F,          KC_G,      KC_H,     KC_J,      KC_K,          KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_HOME,
+        MC_3,       KC_LSFT,                     KC_Z,     KC_X,          KC_C,          KC_V,      KC_B,     KC_BSPC,   KC_N,          KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
         KC_LCTL,    KC_LCTL,         KC_LOPTN,             KC_LOPTN,      LT(1,KC_SPC),  KC_LCMMD,                       LT(1,KC_SPC),            KC_ENT,                       KC_LEFT,  KC_DOWN,  KC_RGHT),
 
     [MAC_FN] = LAYOUT_ansi_89(
         RGB_TOG,    _______,         BT_HST1,    BT_HST2,  BT_HST3,        P2P4G,        KC_F5,     KC_F6,    KC_F7,    KC_F8,          KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,            _______,
-        MC_2,       _______,         MC_6,       MC_7,     _______,        _______,      _______,   _______,  _______,  _______,        _______,  _______,  RGB_VAD,  RGB_VAI,  _______,            _______,
-        _______,    RGB_TOG,         RGB_MOD,    _______,  _______,        MC_8,         _______,   _______,  _______,  _______,        _______,  _______,  RGB_SPD,  RGB_SPI,  _______,            _______,
-        MC_15,      _______,         RGB_RMOD,   _______,  MC_9,           MC_10,        MC_11,     KC_LEFT,  KC_DOWN,  KC_UP,          KC_RGHT,  RGB_HUD,  RGB_HUI,            _______,            KC_END,
-        _______,    _______,                     M_PREV,   M_NEXT,         M_VIMCP,      _______,   MC_12,    MC_13,    NK_TOGG,        _______,  RGB_SAD,  RGB_SAI,  _______,  _______,  _______,
-        MC_0,       _______,         _______,              MC_5,           _______,      MC_14,                         _______,                  _______,                      _______,  _______,  _______),
+        M_DESKTOP,  _______,         MC_6,       MC_7,     _______,        _______,      _______,   _______,  _______,  _______,        _______,  _______,  RGB_VAD,  RGB_VAI,  _______,            _______,
+        M_DL,       RGB_TOG,         RGB_MOD,    _______,  _______,        MC_8,         _______,   _______,  _______,  _______,        _______,  _______,  RGB_SPD,  RGB_SPI,  _______,            _______,
+        M_DEV,      _______,         RGB_RMOD,   _______,  MC_9,           MC_10,        MC_11,     KC_LEFT,  KC_DOWN,  KC_UP,          KC_RGHT,  RGB_HUD,  RGB_HUI,            _______,            KC_END,
+        M_DROPBOX,  _______,                     M_PREV,   M_NEXT,         M_VIMCP,      _______,   MC_12,    MC_13,    NK_TOGG,        _______,  RGB_SAD,  RGB_SAI,  _______,  _______,  _______,
+        M_HOME,     _______,         _______,              MC_4,           _______,      M_SPTLGHT,                     _______,                  MC_5,                      _______,  _______,  _______),
 
     [WIN_BASE] = LAYOUT_ansi_89(
         KC_MUTE,    KC_ESC,          KC_F1,      KC_F2,    KC_F3,          KC_F4,        KC_F5,     KC_F6,    KC_F7,    KC_F8,          KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_INS,             KC_DEL,
@@ -87,6 +93,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case M_VIMCP:
                 SEND_STRING("\"+y");
+                return false;
+            case M_DESKTOP:
+                SEND_STRING(SS_DOWN(X_LCMD) SS_DOWN(X_LCTL) SS_DOWN(X_LALT) SS_TAP(X_1) SS_UP(X_LALT) SS_UP(X_LCTL) SS_UP(X_LCMD));
+                return false;
+            case M_DL:
+                SEND_STRING(SS_DOWN(X_LCMD) SS_DOWN(X_LCTL) SS_DOWN(X_LALT) SS_TAP(X_2) SS_UP(X_LALT) SS_UP(X_LCTL) SS_UP(X_LCMD));
+                return false;
+            case M_DEV:
+                SEND_STRING(SS_DOWN(X_LCMD) SS_DOWN(X_LCTL) SS_DOWN(X_LALT) SS_TAP(X_3) SS_UP(X_LALT) SS_UP(X_LCTL) SS_UP(X_LCMD));
+                return false;
+            case M_DROPBOX:
+                SEND_STRING(SS_DOWN(X_LCMD) SS_DOWN(X_LCTL) SS_DOWN(X_LALT) SS_TAP(X_4) SS_UP(X_LALT) SS_UP(X_LCTL) SS_UP(X_LCMD));
+                return false;
+            case M_HOME:
+                SEND_STRING(SS_DOWN(X_LCMD) SS_DOWN(X_LCTL) SS_DOWN(X_LALT) SS_TAP(X_5) SS_UP(X_LALT) SS_UP(X_LCTL) SS_UP(X_LCMD));
+                return false;
+            case M_SPTLGHT:
+                SEND_STRING(SS_DOWN(X_LCMD) SS_TAP(X_SPC) SS_UP(X_LCMD));
                 return false;
         }
     }
