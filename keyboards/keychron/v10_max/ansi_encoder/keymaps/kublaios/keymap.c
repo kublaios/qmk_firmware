@@ -23,6 +23,14 @@ enum layers {
     WIN_BASE,
     WIN_FN,
 };
+
+// Macros
+enum {
+    M_PREV = SAFE_RANGE,
+    M_NEXT,
+    M_VIMCP,
+};
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_ansi_89(
@@ -35,10 +43,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [MAC_FN] = LAYOUT_ansi_89(
         RGB_TOG,    _______,         BT_HST1,    BT_HST2,  BT_HST3,        P2P4G,        KC_F5,     KC_F6,    KC_F7,    KC_F8,          KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,            _______,
-        MC_2,       _______,         MC_6,       MC_7,     _______,        _______,      _______,   _______,  _______,  _______,        _______,  _______,  _______,  _______,  _______,            _______,
-        _______,    RGB_TOG,         RGB_MOD,    RGB_VAI,  RGB_HUI,        MC_8,         RGB_SPI,   _______,  _______,  _______,        _______,  _______,  _______,  _______,  _______,            _______,
-        MC_15,      _______,         RGB_RMOD,   RGB_VAD,  MC_9,           MC_10,        MC_11,     KC_LEFT,  KC_DOWN,  KC_UP,          KC_RGHT,  _______,  _______,            _______,            KC_END,
-        _______,    _______,                     _______,  _______,        _______,      _______,   MC_12,    MC_13,    NK_TOGG,        _______,  _______,  _______,  _______,  _______,  _______,
+        MC_2,       _______,         MC_6,       MC_7,     _______,        _______,      _______,   _______,  _______,  _______,        _______,  _______,  RGB_VAD,  RGB_VAI,  _______,            _______,
+        _______,    RGB_TOG,         RGB_MOD,    _______,  _______,        MC_8,         _______,   _______,  _______,  _______,        _______,  _______,  RGB_SPD,  RGB_SPI,  _______,            _______,
+        MC_15,      _______,         RGB_RMOD,   _______,  MC_9,           MC_10,        MC_11,     KC_LEFT,  KC_DOWN,  KC_UP,          KC_RGHT,  RGB_HUD,  RGB_HUI,            _______,            KC_END,
+        _______,    _______,                     M_PREV,   M_NEXT,         M_VIMCP,      _______,   MC_12,    MC_13,    NK_TOGG,        _______,  RGB_SAD,  RGB_SAI,  _______,  _______,  _______,
         MC_0,       _______,         MC_14,                _______,        _______,      _______,                       _______,                  _______,                      _______,  _______,  _______),
 
     [WIN_BASE] = LAYOUT_ansi_89(
@@ -69,8 +77,19 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 
 // clang-format on
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_keychron_common(keycode, record)) {
-        return false;
+    if (record->event.pressed) {
+        switch(keycode) {
+            case M_PREV:
+                SEND_STRING(SS_DOWN(X_LCMD) SS_DOWN(X_LCTL) SS_TAP(X_LEFT) SS_UP(X_LCTL) SS_UP(X_LCMD));
+                return false;
+            case M_NEXT:
+                SEND_STRING(SS_DOWN(X_LCMD) SS_DOWN(X_LCTL) SS_TAP(X_RIGHT) SS_UP(X_LCTL) SS_UP(X_LCMD));
+                return false;
+            case M_VIMCP:
+                SEND_STRING("\"+y");
+                return false;
+        }
     }
-    return true;
+
+    return process_record_keychron_common(keycode, record);
 }
