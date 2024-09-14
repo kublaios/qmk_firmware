@@ -34,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL,   KC_LCTL,          MC_5,                 KC_LOPTN,      LT(1,KC_SPC),  KC_LCMMD,                       LT(1,KC_SPC),            KC_ENT,                       KC_LEFT,  KC_DOWN,  KC_RGHT),
 
     [MAC_FN] = LAYOUT_ansi_89(
-        RGB_TOG,    _______,         KC_F1,      KC_F2,    KC_F3,          KC_F4,        KC_F5,     KC_F6,    KC_F7,    KC_F8,          KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,            _______,
+        RGB_TOG,    _______,         BT_HST1,    BT_HST2,  BT_HST3,        P2P4G,        KC_F5,     KC_F6,    KC_F7,    KC_F8,          KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,            _______,
         MC_2,       _______,         MC_6,       MC_7,     _______,        _______,      _______,   _______,  _______,  _______,        _______,  _______,  _______,  _______,  _______,            _______,
         _______,    RGB_TOG,         RGB_MOD,    RGB_VAI,  RGB_HUI,        MC_8,         RGB_SPI,   _______,  _______,  _______,        _______,  _______,  _______,  _______,  _______,            _______,
         MC_15,      _______,         RGB_RMOD,   RGB_VAD,  MC_9,           MC_10,        MC_11,     KC_LEFT,  KC_DOWN,  KC_UP,          KC_RGHT,  _______,  _______,            _______,            KC_END,
