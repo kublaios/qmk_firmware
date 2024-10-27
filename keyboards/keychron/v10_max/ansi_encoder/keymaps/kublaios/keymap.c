@@ -35,6 +35,10 @@ enum {
     M_DROPBOX,
     M_HOME,
     M_SPTLGHT,
+    M_CLOSE,
+    M_VIMJMP_P,
+    M_VIMJMP_N,
+    M_VIM_NXT,
 };
 
 // clang-format off
@@ -49,8 +53,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [MAC_FN] = LAYOUT_ansi_89(
         RGB_TOG,    _______,         BT_HST1,    BT_HST2,  BT_HST3,        P2P4G,        KC_F5,     KC_F6,    KC_F7,    KC_F8,          KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,            _______,
-        M_DESKTOP,  _______,         MC_6,       MC_7,     _______,        _______,      _______,   _______,  _______,  _______,        _______,  _______,  RGB_VAD,  RGB_VAI,  _______,            _______,
-        M_DL,       RGB_TOG,         RGB_MOD,    _______,  _______,        MC_8,         _______,   _______,  _______,  _______,        _______,  _______,  RGB_SPD,  RGB_SPI,  _______,            _______,
+        M_DESKTOP,  _______,         MC_6,       MC_7,     M_VIMJMP_P,     M_VIMJMP_N,   M_VIM_NXT, _______,  _______,  _______,        _______,  _______,  RGB_VAD,  RGB_VAI,  _______,            _______,
+        M_DL,       RGB_TOG,         RGB_MOD,    M_CLOSE,  _______,        MC_8,         _______,   _______,  _______,  _______,        _______,  _______,  RGB_SPD,  RGB_SPI,  _______,            _______,
         M_DEV,      _______,         RGB_RMOD,   _______,  MC_9,           MC_10,        MC_11,     KC_LEFT,  KC_DOWN,  KC_UP,          KC_RGHT,  RGB_HUD,  RGB_HUI,            _______,            KC_END,
         M_DROPBOX,  _______,                     M_PREV,   M_NEXT,         M_VIMCP,      _______,   MC_12,    MC_13,    NK_TOGG,        _______,  RGB_SAD,  RGB_SAI,  _______,  _______,  _______,
         M_HOME,     _______,         _______,              MC_4,           _______,      M_SPTLGHT,                     _______,                  MC_5,                      _______,  _______,  _______),
@@ -111,6 +115,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case M_SPTLGHT:
                 SEND_STRING(SS_DOWN(X_LCMD) SS_TAP(X_SPC) SS_UP(X_LCMD));
+                return false;
+            case M_CLOSE:
+                SEND_STRING(SS_DOWN(X_LCMD) SS_TAP(X_W) SS_UP(X_LCMD));
+                return false;
+            case M_VIMJMP_P:
+                SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_LBRC) SS_UP(X_LSFT));
+                return false;
+            case M_VIMJMP_N:
+                SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_RBRC) SS_UP(X_LSFT));
+                return false;
+            case M_VIM_NXT:
+                SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_8) SS_UP(X_LSFT));
                 return false;
         }
     }
